@@ -1,0 +1,26 @@
+body{
+    background-image: url("https://lh3.googleusercontent.com/803nLLg0xj_y0mcZJ3sRqZLPVlj1F9oxCgvIjeLoT1uuv0D98swnSEOWhubptSP0qUpEeSvkQg=w1980-h1080-e365");
+    background-size: cover;                      
+    background-repeat: no-repeat;
+}
+
+#quote-box{
+  
+  margin-top: 150px;
+  margin-right: 450px;
+  margin-left: 450px;
+  
+  padding-top: 20px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  
+  border-color: black;
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 10px;
+}
+
+
+
+

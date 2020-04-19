@@ -1,0 +1,97 @@
+console.clear()
+
+// React
+class App extends React.Component{
+  constructor(){
+    super();
+    this.state={
+      author: "",
+      quote: "",
+      allQuotes: [],
+      index: ""
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.randomQuote = this.randomQuote.bind(this);
+  };
+  
+ componentDidMount(){
+    fetch("https://type.fit/api/quotes", {method: 'GET'})
+    .then(res => res.json())
+    .then(res => {this.setState({
+      allQuotes:res})
+      this.randomQuote();
+     });         
+ }; 
+      
+  handleClick(){
+    this.randomQuote();
+  };
+  
+  randomQuote(){
+    let random = Math.floor(Math.random() * this.state.allQuotes.length);
+    
+    while(random === this.state.index){
+      random = Math.floor(Math.random() * this.state.allQuotes.length);
+    }
+    
+    this.setState({
+      author: this.state.allQuotes[random].author,
+      quote: this.state.allQuotes[random].text
+      .replace(/<[^>]*>/g, "")
+      .replace(/[0-9$#&;]/g,""),
+      index: random
+    });  
+  };
+
+  
+  render(){
+    return (
+      <div> 
+        <div id="text">
+          <h2>{this.state.quote}</h2>
+        </div>
+        <div id="author">
+          <h4>{this.state.author}</h4>
+        </div>
+        <div class="row d-flex justify-content-between">
+          <div>
+            <button class="btn btn-light">
+             <a 
+             id="tweet-quote"
+             target="_blank"
+             href={"https://twitter.com/intent/tweet?text="+this.state.quote+"-"+this.state.author}
+             //href='https://twitter.com/intent/tweet?text='
+             >
+              <i class="fab fa-twitter"></i>Tweet
+             </a>
+            </button>
+          </div>
+          <div id="quote">
+            <button 
+              id="new-quote" 
+              class="btn btn-light" 
+              onClick={this.handleClick}>
+              <i class="fas fa-quote-right"></i>New Quote
+            </button>
+          </div>
+        </div>
+       </div>
+    )
+  } 
+};
+
+ReactDOM.render(<App />,document.getElementById("quote-box"));
+
+
+                 
+
+
+
+
+
+
+
+
+
+
+
